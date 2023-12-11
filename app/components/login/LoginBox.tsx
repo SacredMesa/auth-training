@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { signIn } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 
 interface FormFields {
   username: HTMLInputElement;
@@ -9,9 +9,16 @@ interface FormFields {
 }
 
 export default function LoginBox() {
+  const { data } = useSession();
+
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = e.currentTarget.elements as typeof e.currentTarget.elements & FormFields;
+
+    signIn('credentials', {
+      username: formData.username.value,
+      password: formData.password.value
+    })
   }
 
   return (
@@ -101,6 +108,7 @@ export default function LoginBox() {
             </div>
           </div>
         </div>
+      Signed in as {data?.user?.name}
       </div>
     </section>
   )
