@@ -4,7 +4,7 @@ import { getToken } from 'next-auth/jwt';
 
 export { default } from "next-auth/middleware"
 
-const protectedPages = [''];
+const protectedPages = ['/secretstuff'];
 const protectedApis = ['/api/secret-route'];
 
 export const middleware = async (req: NextRequest) => {

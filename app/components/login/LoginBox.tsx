@@ -17,7 +17,8 @@ export default function LoginBox() {
 
     signIn('credentials', {
       username: formData.username.value,
-      password: formData.password.value
+      password: formData.password.value,
+      callbackUrl: '/secretstuff'
     })
   }
 
